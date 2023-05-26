@@ -19,13 +19,13 @@ salle_207=$(echo "$E207" | jq '.room')
 date=$(date "+%d-%m-%Y %T")
 
 #Right all the command's results of the room E208 in a text file 
-echo "En" $salle_208 "le" $date ", la temperature etait de:" $temp_208 "degré celcius" >> /home/alami/Desktop/SAE_15/donnees/E208/resultat.txt
+echo "En" $salle_208 "le" $date ", la temperature etait de:" $temp_208 "degré celcius" >> /home/alami/Desktop/donnees/E208/resultat.txt
 
 #Right all the command's results of the room E207 in a text file 
-echo "En" $salle_207 "le" $date ", la temperature etait de:" $temp_207 "degré celcius" >> /home/alami/Desktop/SAE_15/donnees/E207/resultat.txt
+echo "En" $salle_207 "le" $date ", la temperature etait de:" $temp_207 "degré celcius" >> /home/alami/Desktop/donnees/E207/resultat.txt
 
 
-echo $temp_208 >> /home/alami/Desktop/SAE_15/donnees/E208/temperature.txt
-echo $temp_207 >> /home/alami/Desktop/SAE_15/donnees/E207/temperature.txt
-echo $date >> /home/alami/Desktop/SAE_15/donnees/E208/date.txt
-echo $date >> /home/alami/Desktop/SAE_15/donnees/E207/date.txt
+echo $temp_208 >> /home/alami/Desktop/donnees/E208/temperature.txt
+echo $temp_207 >> /home/alami/Desktop/donnees/E207/temperature.txt
+echo $date >> /home/alami/Desktop/donnees/E208/date.txt
+echo $date >> /home/alami/Desktop/donnees/E207/date.txt
