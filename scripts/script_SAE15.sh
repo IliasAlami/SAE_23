@@ -2,18 +2,18 @@
 
 
 #Mosquitto command in linux to retrieve the data from the broker
-E208=$(mosquitto_sub -h mqtt.iut-blagnac.fr -u à remplir -P à remplir -t Student/by-room/E208/data)
-E207=$(mosquitto_sub -h mqtt.iut-blagnac.fr -u à remplir -P à remplir -t Student/by-room/E207/data)
+E208=$(mosquitto_sub -h mqtt.iut-blagnac.fr -t Student/by-room/E208/data -C 1)
+E207=$(mosquitto_sub -h mqtt.iut-blagnac.fr -t Student/by-room/E207/data -C 1)
 
 #Command that allow me to extract only the temperature in the room E208
-temp_208=$(echo "$E208" | jq '.àremplir')
+temp_208=$(echo "$E208" | jq '.[0].temperature')
 #Command that allow me to extract only the room
-salle_208=$(echo "$E208" | jq '.àremplir')
+salle_208=$(echo "$E208" | jq '.[1].room')
 
 #Command that allow me to extract only the temperature in the room E208
-temp_207=$(echo "$E207" | jq '.àremplir')
+temp_207=$(echo "$E207" | jq '.[0].temperature')
 #Command that allow me to extract only the room
-salle_207=$(echo "$E207" | jq '.àremplir')
+salle_207=$(echo "$E207" | jq '.[1].room')
 
 #Command that display the date when we got the data
 date=$(date "+%d-%m-%Y %T")
