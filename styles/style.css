@@ -26,10 +26,7 @@ body {
   background: linear-gradient(90deg, #202020, #686868, #202020);
 }
 
-footer {
-  position: static;
-  bottom: 0;
-}
+
 
 h1, h2{
   text-align: center;
@@ -37,7 +34,6 @@ h1, h2{
 
 h1 {
   font-size: 480%;
-  text-decoration: underline;
 }
 
 h2 {
@@ -48,39 +44,22 @@ h2 {
   margin-top: 50px;
   text-align: center;
   border: solid;
-  margin-left: 230px;
-  margin-right: 230px;
+  margin-left: 400px;
+  margin-right: 400px;
   background: linear-gradient(90deg, #171717, #313131, #171717);
   border-color: rgb(22, 22, 22);
   border-radius: 10px;
   font-size: 130%;
+  padding-bottom: 30px;
 }
 
-.bulle-video {
-  margin-top: 20px;
-  text-align: center;
-  border: solid;
-  margin-left: 20%;
-  margin-right: 20%;
-  background: linear-gradient(90deg, #171717, #313131, #171717);
-  border-color: rgb(22, 22, 22);
-  border-radius: 10px;
+input{
+  color: black;
 }
 
 .IUT li{
   display: inline;
   padding: 10px;
-}
-
-video {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  max-width: 100%;
-  height: auto;
 }
 
 strong {
@@ -99,10 +78,6 @@ strong {
 * {
   font-family: 'Times New Roman', Times, serif;
 }
-
-
-
-
 
 table {
   margin-left: 300px;
@@ -125,7 +100,32 @@ table {
   background-color: #848484;
   }
 
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 15px;
+  text-align: center;
+}
 
+footer ul li {
+  float: left;
+  width:33%;
+  list-style-type: none;
+}
+
+footer ul li:first-child {
+  text-align: left;
+}
+
+footer ul li:last-child {
+  text-align: right;
+}
+
+footer ul li a{
+  text-decoration: none;
+}
 
 
 @media (max-width:1280px) {
