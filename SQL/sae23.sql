@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 31 Mai 2023 à 10:25
+-- Généré le :  Ven 02 Juin 2023 à 17:20
 -- Version du serveur :  5.6.20
 -- Version de PHP :  5.5.15
 
@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS `Administration` (
 --
 
 INSERT INTO `Administration` (`login`, `mdp`) VALUES
+('admin1', 'passadmin1'),
+('admin1', 'passadmin1'),
 ('admin1', 'passadmin1');
 
 -- --------------------------------------------------------
@@ -66,21 +68,21 @@ INSERT INTO `batiment` (`id_batiment`, `nom`, `login`, `mdp`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `capteur` (
-`id_capteur` int(11) NOT NULL,
+  `id_capteur` varchar(16) NOT NULL,
   `nom` varchar(20) DEFAULT NULL,
   `type` varchar(20) DEFAULT NULL,
   `id_batiment` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2598613 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `capteur`
 --
 
 INSERT INTO `capteur` (`id_capteur`, `nom`, `type`, `id_batiment`) VALUES
-(1486945, 'capteur_E207', 'temperature', 486945),
-(1598612, 'capteur_C004', 'co2', 598612),
-(2486945, 'capteur_E208', 'temperature', 486945),
-(2598612, 'capteur_C006', 'co2', 598612);
+('1486945', 'capteur_E207', 'temperature', 486945),
+('1598612', 'capteur_C004', 'co2', 598612),
+('2486945', 'capteur_E208', 'temperature', 486945),
+('2598612', 'capteur_C006', 'co2', 598612);
 
 -- --------------------------------------------------------
 
@@ -93,19 +95,20 @@ CREATE TABLE IF NOT EXISTS `mesure` (
   `date` date DEFAULT NULL,
   `horaire` varchar(10) DEFAULT NULL,
   `valeur` decimal(10,2) DEFAULT NULL,
-  `id_capteur` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25986123 ;
+  `id_capteur` varchar(16) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25986131 ;
 
 --
 -- Contenu de la table `mesure`
 --
 
 INSERT INTO `mesure` (`id_mesure`, `date`, `horaire`, `valeur`, `id_capteur`) VALUES
-(1, NULL, NULL, NULL, NULL),
-(14869451, '2023-06-28', '17:20:25', '25.60', 1486945),
-(15986121, '2023-06-28', '17:20:25', '450.00', 1598612),
-(24869452, '2023-06-28', '17:20:25', '25.20', 2486945),
-(25986122, '2023-06-28', '17:20:25', '443.00', 2598612);
+(14869451, '2023-06-28', '17:20:25', '25.60', '1486945'),
+(15986121, '2023-06-28', '17:20:25', '450.00', '1598612'),
+(24869452, '2023-06-28', '17:20:25', '25.20', '2486945'),
+(25986122, '2023-06-28', '17:20:25', '443.00', '2598612'),
+(25986129, '2023-06-02', '15:39:30', '24.90', NULL),
+(25986130, '2023-06-02', '16:18:05', '24.50', NULL);
 
 --
 -- Index pour les tables exportées
@@ -139,15 +142,10 @@ ALTER TABLE `mesure`
 ALTER TABLE `batiment`
 MODIFY `id_batiment` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=598613;
 --
--- AUTO_INCREMENT pour la table `capteur`
---
-ALTER TABLE `capteur`
-MODIFY `id_capteur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2598613;
---
 -- AUTO_INCREMENT pour la table `mesure`
 --
 ALTER TABLE `mesure`
-MODIFY `id_mesure` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25986123;
+MODIFY `id_mesure` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25986131;
 --
 -- Contraintes pour les tables exportées
 --
