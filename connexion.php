@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="DAUDIGNON" />
-  <meta name="description" content="Portfolio SAE 24" />
+  <meta name="description" content="Portfolio SAE 23" />
   <meta name="keywords" content="HTML, CSS, Portfolio" />
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/rwd.css" />
@@ -72,13 +72,6 @@
         <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required><br><br><br>
         <label><b>Mot De Passe</b></label><br>
         <input type="password" placeholder="Entrer le mot de passe" name="password" required>
-        <?php
-        if(isset($_GET['erreur'])){
-        $err = $_GET['erreur'];
-        if($err==1 || $err==2)
-        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-        }
-        ?>
       </form>
     </section>
   </section>
