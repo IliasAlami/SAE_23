@@ -52,6 +52,10 @@ if (isset($_POST['supprimer_capteur'])) {
     }
 }
 
+// Récupérer la liste des capteurs pour la sélection
+$sql_select_capteurs = "SELECT id_capteur, nom FROM capteur";
+$result_capteurs = mysqli_query($conn, $sql_select_capteurs);
+
 // Fermer la connexion à la base de données
 mysqli_close($conn);
 ?>
@@ -61,11 +65,21 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <title>Ajouter/Supprimer des capteurs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Pour bien gérer le RWD -->
+    <meta name="author" content="ALAMI, " />
+    <meta name="description" content="SAE_23" />
+    <meta name="keywords" content="HTML, CSS, Portfolio" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/rwd.css" />
+    <link rel="stylesheet" href="./styles/Hamburger.css" />
 </head>
 <body>
     <h1>Ajouter/Supprimer des capteurs</h1>
 
     <h2>Ajouter un capteur</h2>
+    
+    <section class="bulle">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="id_capteur">ID Capteur:</label>
         <input type="text" id="id_capteur" name="id_capteur" required><br>
@@ -81,13 +95,22 @@ mysqli_close($conn);
 
         <input type="submit" name="ajouter_capteur" value="Ajouter Capteur">
     </form>
-
+	</p>
+	</section>
+	
+	<section class="bulle">
     <h2>Supprimer un capteur</h2>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="id_capteur_supprimer">ID Capteur:</label>
-        <input type="text" id="id_capteur_supprimer" name="id_capteur" required><br>
-
+        <label for="id_capteur_supprimer">Sélectionnez un capteur:</label>
+        <select class="bouton_selec" id="id_capteur_supprimer" name="id_capteur" required>
+            <?php
+            while ($row = mysqli_fetch_assoc($result_capteurs)) {
+                echo "<option value='" . $row['id_capteur'] . "'>" . $row['nom'] . "</option>";
+            }
+            ?>
+        </select><br>	
         <input type="submit" name="supprimer_capteur" value="Supprimer Capteur">
+        </section>
     </form>
 </body>
 </html>
