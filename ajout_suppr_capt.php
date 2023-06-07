@@ -1,9 +1,20 @@
 <?php
-// Connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "passroot";
-$dbname = "sae23";
+    include 'config.php';
+
+
+    session_start(); // Démarrer la session
+
+    if (isset($_SESSION['user_id'])) {
+        // L'utilisateur est connecté
+        $userId = $_SESSION['user_id'];
+        // Effectuer les opérations spécifiques à l'utilisateur connecté
+    } else {
+        // L'utilisateur n'est pas connecté
+        // Rediriger vers la page de connexion ou afficher un message d'erreur
+        header('Location: connexion.php');
+        exit();
+    }
+
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {

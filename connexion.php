@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="DAUDIGNON" />
-  <meta name="description" content="Portfolio SAE 23" />
+  <meta name="description" content="Portfolio SAE 24" />
   <meta name="keywords" content="HTML, CSS, Portfolio" />
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/rwd.css" />
@@ -64,14 +64,15 @@
   <section class="sujet">
     <h1> CONNEXION </h1>
     <section class="bulle">
-      <form action="verif.php" method="POST">
+      <form action="login.php" method="POST">
         <p class="justify">
           <strong>Utilisateurs</strong> <br> <br>
         </p>
         <label><b>Nom d'utilisateur</b></label><br>
-        <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required><br><br><br>
+        <input type="text" placeholder="Entrer le nom d'utilisateur" name="login" required><br><br><br>
         <label><b>Mot De Passe</b></label><br>
-        <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+        <input type="password" placeholder="Entrer le mot de passe" name="password" required><br><br><br>
+        <button type="submit" class="btn btn-primary btn-block">Connexion</button>
       </form>
     </section>
   </section>
@@ -90,10 +91,10 @@
     
 
     <ul class="IUT">
-	    <li><a href="https://www.iut-blagnac.fr/fr/" target="_blank">IUT de Blagnac</a></li>
-	    <li>Département Réseaux et Télécommunications</li>
+      <li><a href="https://www.iut-blagnac.fr/fr/" target="_blank">IUT de Blagnac</a></li>
+      <li>Département Réseaux et Télécommunications</li>
       <li>BUT1</li>
-	  </ul>  
+    </ul>  
   </footer>
     
  </body>
