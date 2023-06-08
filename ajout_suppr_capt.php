@@ -4,15 +4,14 @@
 
     session_start(); // Démarrer la session
 
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['login'])) {
         // L'utilisateur est connecté
-        $userId = $_SESSION['user_id'];
+        $login = $_SESSION['login'];
         // Effectuer les opérations spécifiques à l'utilisateur connecté
     } else {
         // L'utilisateur n'est pas connecté
         // Rediriger vers la page de connexion ou afficher un message d'erreur
         header('Location: connexion.php');
-        exit();
     }
 
 
@@ -120,7 +119,8 @@ mysqli_close($conn);
             }
             ?>
         </select><br>	
-        <input type="submit" name="supprimer_capteur" value="Supprimer Capteur">
+        <input type="submit" name="supprimer_capteur" value="Supprimer Capteur"><br><br><br>
+        <a href="deconnexion.php">Déconnexion</a>
         </section>
     </form>
 </body>

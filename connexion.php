@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="DAUDIGNON" />
-  <meta name="description" content="Portfolio SAE 24" />
+  <meta name="description" content="Portfolio SAE 23" />
   <meta name="keywords" content="HTML, CSS, Portfolio" />
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/rwd.css" />
@@ -53,9 +53,7 @@
       <nav class="nav-links">
           <ul>
             <li><a href="index.html" class="first">Accueil</a></li>
-            <li><a href="administration.html">Administration</a></li>
-            <li><a href="gestion.html">Gestion</a></li>
-            <li><a href="consultation.html">Consultation</a></li>
+            <li><a href="connexion.php">Connexion</a></li>
             <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
           </ul>
       </nav>
