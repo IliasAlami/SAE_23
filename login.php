@@ -1,28 +1,26 @@
 <?php
-    include 'config.php';
+include 'config.php';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $user = $_POST['login'];
-        $pass = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user = $_POST['login'];
+    $pass = $_POST['password'];
 
-        // Requête SQL pour vérifier les informations de connexion
-        $query = "SELECT login FROM `administration` WHERE login='$user' AND mdp='$pass'";
-        $result = mysqli_query($conn, $query);
-        $result = mysqli_fetch_array($result);
+    // Requête SQL pour vérifier les informations de connexion dans la table `administration`
+    $query_admin = "SELECT login FROM administration WHERE login='$user' AND mdp='$pass'";
+    $result_admin = mysqli_query($conn, $query_admin);
 
-        if ($result[0] == $user) {
-            header('Location: gestion_de_projet.html');
-        }
-
-        else {
-                // Requête SQL pour vérifier les informations de connexion
-            $query = "SELECT login FROM `batiment` WHERE login='$user' AND mdp='$pass'";
-            $result = mysqli_query($conn, $query);
-            $result = mysqli_fetch_array($result);
-
-            if ($result[0] == $user) {
-                header('Location: ajout_suppr_capt.php');
-            }
-        }
+    if ($result_admin && mysqli_num_rows($result_admin) > 0) {
+        header('Location: gestion_de_projet.htmlLocation: ajout_suppr_capt.php');
+        exit(); // Terminer le script pour éviter toute exécution supplémentaire
     }
+
+    // Requête SQL pour vérifier les informations de connexion dans la table `batiment`
+    $query_batiment = "SELECT login FROM batiment WHERE login='$user' AND mdp='$pass'";
+    $result_batiment = mysqli_query($conn, $query_batiment);
+
+    if ($result_batiment && mysqli_num_rows($result_batiment) > 0) {
+        header('');
+        exit(); // Terminer le script pour éviter toute exécution supplémentaire
+    }
+}
 ?>
