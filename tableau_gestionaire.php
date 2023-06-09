@@ -1,3 +1,22 @@
+<?php
+    include 'config.php';
+
+
+    session_start(); // Démarrer la session
+
+    if (isset($_SESSION['login'])) {
+        // L'utilisateur est connecté
+        $login = $_SESSION['login'];
+        // Effectuer les opérations spécifiques à l'utilisateur connecté
+    } else {
+        // L'utilisateur n'est pas connecté
+        // Rediriger vers la page de connexion ou afficher un message d'erreur
+        header('Location: connexion.php');
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +43,7 @@
             </div>
             <nav class="nav-links">
                 <ul>
-                    <li><a href="index.html" class="first">Accueil</a></li>
+                    <li><a href="index.php" class="first">Accueil</a></li>
                     <li><a href="connexion.php">Connexion</a></li>
                     <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
                 </ul>
@@ -36,9 +55,6 @@
 
     <table id="data-table">
         <?php
-        
-        session_start();
-        include 'config.php';
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
@@ -46,10 +62,20 @@
         }
 
         // Requête pour récupérer les données des capteurs, des mesures, du bâtiment et du gestionnaire
-        $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur FROM capteur 
-                JOIN mesure ON capteur.id_capteur = mesure.id_capteur
-                JOIN batiment ON capteur.id_batiment = batiment.id_batiment";
-        $result = $conn->query($sql);
+
+$limit = 10; // Nombre par défaut de lignes à afficher
+
+if (isset($_GET['limit'])) {
+    $limit = $_GET['limit']; // Récupérer la valeur spécifiée par l'utilisateur (vous pouvez ajuster selon votre cas)
+}
+
+    $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+        FROM capteur
+        JOIN mesure ON capteur.id_capteur = mesure.id_capteur
+        JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+        LIMIT " . $limit;
+
+    $result = $conn->query($sql);
 
         // Génération du tableau HTML avec les données récupérées
         if ($result->num_rows > 0) {
@@ -75,6 +101,8 @@
         // Fermeture de la connexion à la base de données
         $conn->close();
         ?>
+
+
     </table>
         <footer>
     <aside id="last">

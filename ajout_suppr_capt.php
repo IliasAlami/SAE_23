@@ -97,7 +97,7 @@ mysqli_close($conn);
             </div>
             <nav class="nav-links">
                 <ul>
-                    <li><a href="index.html" class="first">Accueil</a></li>
+                    <li><a href="index.php" class="first">Accueil</a></li>
                     <li><a href="connexion.php">Connexion</a></li>
                     <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
                 </ul>
@@ -125,6 +125,7 @@ mysqli_close($conn);
         <input type="submit" name="ajouter_capteur" value="Ajouter Capteur">
     </form>
 	</p>
+    <a href="deconnexion.php">Déconnexion</a>
 	</section>
 	
 	<section class="bulle">
@@ -143,51 +144,65 @@ mysqli_close($conn);
     <section class="bulle">
         <table id="data-table">
         <?php
-
-        // Requête pour récupérer toutes les données des bâtiments, des capteurs et des mesures
-        $sql = "SELECT * FROM 'batiment'";
-        $result_batiment = $conn->query($sql);
-
-        $sql = "SELECT * FROM 'capteur'";
-        $result_capteur = $conn->query($sql);
-
-        $sql = "SELECT * FROM 'mesure'";
-        $result_mesure = $conn->query($sql);
-
-        // Génération du tableau HTML avec les données récupérées
-        echo "<tr><th>Bâtiments</th></tr>";
-        if ($result_batiment->num_rows > 0) {
-            while ($row = $result_batiment->fetch_assoc()) {
-                echo "<tr><td>" . $row["nom"] . "</td></tr>";
-            }
-        } else {
-            echo "<tr><td>Aucun bâtiment trouvé.</td></tr>";
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Erreur de connexion à la base de données : " . $conn->connect_error);
         }
 
-        echo "<tr><th>Capteurs</th></tr>";
-        if ($result_capteur->num_rows > 0) {
-            while ($row = $result_capteur->fetch_assoc()) {
-                echo "<tr><td>" . $row["id_capteur"] . "</td></tr>";
-            }
-        } else {
-            echo "<tr><td>Aucun capteur trouvé.</td></tr>";
-        }
+                $connectedBatiment = $login; // ID de bâtiment connecté
+        $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+                FROM capteur
+                JOIN mesure ON capteur.id_capteur = mesure.id_capteur
+                JOIN batiment ON capteur.id_batiment = batiment.id_batiment";
+                
+                $result = $conn->query($sql);
 
-        echo "<tr><th>Mesures</th></tr>";
-        if ($result_mesure->num_rows > 0) {
-            while ($row = $result_mesure->fetch_assoc()) {
-                echo "<tr><td>" . $row["id_mesure"] . "</td></tr>";
-            }
-        } else {
-            echo "<tr><td>Aucune mesure trouvée.</td></tr>";
-        }
+                // Génération du tableau HTML avec les données récupérées
+                if ($result->num_rows > 0) {
+                    // En-tête du tableau
+                    echo "<tr>";
+                    while ($fieldinfo = $result->fetch_field()) {
+                        echo "<th>" . $fieldinfo->name . "</th>";
+                    }
+                    echo "</tr>";
 
-        // Fermeture de la connexion à la base de données
-        $conn->close();
+                    // Données du tableau
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        foreach ($row as $key => $value) {
+                            echo "<td>" . $value . "</td>";
+                        }
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Aucune donnée disponible.</td></tr>";
+                }
+
+                // Fermeture de la connexion à la base de données
+                $conn->close();
         ?>
     </table>
     </section>
-    <a href="deconnexion.php">Déconnexion</a>
     </form>
 </body>
+<footer>
+    <aside id="last">
+
+      <p>Validation de la page HTML5 - CSS3</p>
+    <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Filias-alami-31000.atwebpages.com%2FSAE_14%2Findex.html" target="_blank"> 
+      <img class= "image-responsive" src="./images/html5-validator-badge-blue.png" alt="HTML5 Valide !" />
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Filias-alami-31000.atwebpages.com%2FSAE_14%2Fstyles%2Fstyle.css" target="_blank">
+      <img class= "image-responsive" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !" />
+    </a>
+    </aside>
+    
+
+    <ul class="IUT">
+      <li><a href="https://www.iut-blagnac.fr/fr/" target="_blank">IUT de Blagnac</a></li>
+      <li>Département Réseaux et Télécommunications</li>
+      <li>BUT1</li>
+    </ul>  
+</footer>
 </html>

@@ -21,7 +21,6 @@ aside img
 } 
 
 body {
-  margin: 0px;
   font-family: 'segoe ui';
   background: linear-gradient(90deg, #202020, #686868, #202020);
 }
@@ -53,6 +52,11 @@ h2 {
   padding-bottom: 30px;
 }
 
+section.sujet{
+  margin-bottom: 200px;
+}
+
+
 input{
   color: black;
 }
@@ -80,7 +84,6 @@ strong {
 }
 
 table {
-  margin-left: 300px;
   border: solid #0b0b0b;
   text-align: center;
   }
