@@ -15,32 +15,6 @@
  
   <header>
 
-
-
-   <!-- <div class="nav">
-      <input type="checkbox" id="nav-check">
-      <div class="nav-header">
-      </div>
-      <div class="nav-btn">
-        <label for="nav-check">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-      </div>
-      
-      <div class="nav-links">
-        <a href="index.html" class="first">Accueil</a>
-        <a href="administration.html">Administration</a>
-        <a href="gestion.html">Gestion</a>
-        <a href="consultation.html">Consultation</a>
-        <a href="gestion_de_projet.html">Gestion de projet</a>
-      </div>
-    </div>-->
-
-
-
-
      <div class="nav">
       <input type="checkbox" id="nav-check">
       <div class="nav-btn">

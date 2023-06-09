@@ -76,7 +76,7 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <title>Ajouter/Supprimer des capteurs</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Pour bien gérer le RWD -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ALAMI, " />
     <meta name="description" content="SAE_23" />
     <meta name="keywords" content="HTML, CSS, Portfolio" />
@@ -125,7 +125,6 @@ mysqli_close($conn);
         <input type="submit" name="ajouter_capteur" value="Ajouter Capteur">
     </form>
 	</p>
-    <a href="deconnexion.php">Déconnexion</a>
 	</section>
 	
 	<section class="bulle">
@@ -153,7 +152,8 @@ mysqli_close($conn);
         $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
                 FROM capteur
                 JOIN mesure ON capteur.id_capteur = mesure.id_capteur
-                JOIN batiment ON capteur.id_batiment = batiment.id_batiment";
+                JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+                ORDER BY mesure.date DESC, mesure.horaire DESC";
                 
                 $result = $conn->query($sql);
 

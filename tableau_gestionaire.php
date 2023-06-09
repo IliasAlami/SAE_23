@@ -53,58 +53,51 @@
 
     <h1>Données des capteurs</h1>
 
+    <section class="bulle">
     <table id="data-table">
+
         <?php
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Erreur de connexion à la base de données : " . $conn->connect_error);
-        }
+        $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+                FROM capteur
+                JOIN mesure ON capteur.id_capteur = mesure.id_capteur
+                JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+                ORDER BY mesure.date DESC, mesure.horaire DESC
+                WHERE batiment.login = '" . $login . "'";
 
-        // Requête pour récupérer les données des capteurs, des mesures, du bâtiment et du gestionnaire
+            $result = $conn->query($sql);
 
-$limit = 10; // Nombre par défaut de lignes à afficher
-
-if (isset($_GET['limit'])) {
-    $limit = $_GET['limit']; // Récupérer la valeur spécifiée par l'utilisateur (vous pouvez ajuster selon votre cas)
-}
-
-    $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
-        FROM capteur
-        JOIN mesure ON capteur.id_capteur = mesure.id_capteur
-        JOIN batiment ON capteur.id_batiment = batiment.id_batiment
-        LIMIT " . $limit;
-
-    $result = $conn->query($sql);
-
-        // Génération du tableau HTML avec les données récupérées
-        if ($result->num_rows > 0) {
-            // En-tête du tableau
-            echo "<tr>";
-            while ($fieldinfo = $result->fetch_field()) {
-                echo "<th>" . $fieldinfo->name . "</th>";
-            }
-            echo "</tr>";
-
-            // Données du tableau
-            while ($row = $result->fetch_assoc()) {
+            // Génération du tableau HTML avec les données récupérées
+            if ($result->num_rows > 0) {
+                // En-tête du tableau
+                echo "<table>";
                 echo "<tr>";
-                foreach ($row as $key => $value) {
-                    echo "<td>" . $value . "</td>";
+                while ($fieldinfo = $result->fetch_field()) {
+                    echo "<th>" . $fieldinfo->name . "</th>";
                 }
                 echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='6'>Aucune donnée disponible.</td></tr>";
-        }
 
-        // Fermeture de la connexion à la base de données
-        $conn->close();
-        ?>
+                // Données du tableau
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    foreach ($row as $key => $value) {
+                        echo "<td>" . $value . "</td>";
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>Aucune donnée disponible.</p>";
+            }
+
+            // Fermeture de la connexion à la base de données
+            $conn->close();
+            ?>
 
 
     </table>
-        <footer>
+    </section>
+    <footer>
     <aside id="last">
 
       <p>Validation de la page HTML5 - CSS3</p>
