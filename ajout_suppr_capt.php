@@ -85,6 +85,25 @@ mysqli_close($conn);
     <link rel="stylesheet" href="./styles/Hamburger.css" />
 </head>
 <body>
+    <header>
+        <div class="nav">
+            <input type="checkbox" id="nav-check">
+            <div class="nav-btn">
+                <label for="nav-check">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="first">Accueil</a></li>
+                    <li><a href="connexion.php">Connexion</a></li>
+                    <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <h1>Ajouter/Supprimer des capteurs</h1>
 
     <h2>Ajouter un capteur</h2>
@@ -126,13 +145,13 @@ mysqli_close($conn);
         <?php
 
         // Requête pour récupérer toutes les données des bâtiments, des capteurs et des mesures
-        $sql = "SELECT * FROM batiment";
+        $sql = "SELECT * FROM 'batiment'";
         $result_batiment = $conn->query($sql);
 
-        $sql = "SELECT * FROM capteur";
+        $sql = "SELECT * FROM 'capteur'";
         $result_capteur = $conn->query($sql);
 
-        $sql = "SELECT * FROM mesure";
+        $sql = "SELECT * FROM 'mesure'";
         $result_mesure = $conn->query($sql);
 
         // Génération du tableau HTML avec les données récupérées

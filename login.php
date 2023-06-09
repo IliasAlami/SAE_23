@@ -26,7 +26,7 @@
 
             if ($result[0] === $user) {
                 $_SESSION['login'] = $_POST['login'];
-                header('Location: gestion_de_projet.html');
+                header('Location: tableau_gestionaire.php');
             }
             else {
                 header('Location:connexion.php?login err=already');

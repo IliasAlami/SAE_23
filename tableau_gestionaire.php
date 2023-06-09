@@ -5,13 +5,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="DAUDIGNON" />
-  <meta name="description" content="Portfolio SAE 24" />
-  <meta name="keywords" content="HTML, CSS, Portfolio" />
+  <meta name="description" content="SAE 23" />
+  <meta name="keywords" content="HTML, CSS, PHP" />
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/rwd.css" />
   <link rel="stylesheet" href="./styles/Hamburger.css" />
 </head>
 <body>
+    <header>
+        <div class="nav">
+            <input type="checkbox" id="nav-check">
+            <div class="nav-btn">
+                <label for="nav-check">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="first">Accueil</a></li>
+                    <li><a href="connexion.php">Connexion</a></li>
+                    <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <h1>Données des capteurs</h1>
+
     <table id="data-table">
         <?php
         
@@ -24,7 +46,7 @@
         }
 
         // Requête pour récupérer les données des capteurs, des mesures, du bâtiment et du gestionnaire
-        $sql = "SELECT capteur.*, mesure.*, batiment.nom AS nom_batiment, batiment.login AS login_gestionnaire FROM capteur 
+        $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur FROM capteur 
                 JOIN mesure ON capteur.id_capteur = mesure.id_capteur
                 JOIN batiment ON capteur.id_batiment = batiment.id_batiment";
         $result = $conn->query($sql);

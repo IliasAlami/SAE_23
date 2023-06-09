@@ -100,8 +100,11 @@ table {
   background-color: #848484;
   }
 
+button{
+  color: black;
+}
+
 footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
