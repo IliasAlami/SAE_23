@@ -120,8 +120,55 @@ mysqli_close($conn);
             ?>
         </select><br>	
         <input type="submit" name="supprimer_capteur" value="Supprimer Capteur"><br><br><br>
-        <a href="deconnexion.php">Déconnexion</a>
         </section>
+    <section class="bulle">
+        <table id="data-table">
+        <?php
+
+        // Requête pour récupérer toutes les données des bâtiments, des capteurs et des mesures
+        $sql = "SELECT * FROM batiment";
+        $result_batiment = $conn->query($sql);
+
+        $sql = "SELECT * FROM capteur";
+        $result_capteur = $conn->query($sql);
+
+        $sql = "SELECT * FROM mesure";
+        $result_mesure = $conn->query($sql);
+
+        // Génération du tableau HTML avec les données récupérées
+        echo "<tr><th>Bâtiments</th></tr>";
+        if ($result_batiment->num_rows > 0) {
+            while ($row = $result_batiment->fetch_assoc()) {
+                echo "<tr><td>" . $row["nom"] . "</td></tr>";
+            }
+        } else {
+            echo "<tr><td>Aucun bâtiment trouvé.</td></tr>";
+        }
+
+        echo "<tr><th>Capteurs</th></tr>";
+        if ($result_capteur->num_rows > 0) {
+            while ($row = $result_capteur->fetch_assoc()) {
+                echo "<tr><td>" . $row["id_capteur"] . "</td></tr>";
+            }
+        } else {
+            echo "<tr><td>Aucun capteur trouvé.</td></tr>";
+        }
+
+        echo "<tr><th>Mesures</th></tr>";
+        if ($result_mesure->num_rows > 0) {
+            while ($row = $result_mesure->fetch_assoc()) {
+                echo "<tr><td>" . $row["id_mesure"] . "</td></tr>";
+            }
+        } else {
+            echo "<tr><td>Aucune mesure trouvée.</td></tr>";
+        }
+
+        // Fermeture de la connexion à la base de données
+        $conn->close();
+        ?>
+    </table>
+    </section>
+    <a href="deconnexion.php">Déconnexion</a>
     </form>
 </body>
 </html>

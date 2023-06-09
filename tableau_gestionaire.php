@@ -14,11 +14,9 @@
 <body>
     <table id="data-table">
         <?php
-        // Connexion à la base de données
-        $servername = "localhost";
-        $username = "votre_nom_d_utilisateur";
-        $password = "votre_mot_de_passe";
-        $dbname = "sae23";
+        
+        session_start();
+        include 'config.php';
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
