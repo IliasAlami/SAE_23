@@ -4,11 +4,15 @@
 
     session_start(); // Démarrer la session
 
-    if (isset($_SESSION['login'])) {
+    if (isset($_SESSION['login'])) 
+    {
         // L'utilisateur est connecté
         $login = $_SESSION['login'];
         // Effectuer les opérations spécifiques à l'utilisateur connecté
-    } else {
+    } 
+    
+    else 
+    {
         // L'utilisateur n'est pas connecté
         // Rediriger vers la page de connexion ou afficher un message d'erreur
         header('Location: connexion.php');
@@ -16,12 +20,14 @@
 
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
+if (!$conn) 
+{
     die("La connexion à la base de données a échoué : " . mysqli_connect_error());
 }
 
 // Traitement du formulaire d'ajout de capteur
-if (isset($_POST['ajouter_capteur'])) {
+if (isset($_POST['ajouter_capteur'])) 
+{
     $id_capteur = $_POST['id_capteur'];
     $nom = $_POST['nom'];
     $type = $_POST['type'];
@@ -30,34 +36,51 @@ if (isset($_POST['ajouter_capteur'])) {
     // Vérifier si le bâtiment existe avant d'ajouter le capteur
     $sql_check_batiment = "SELECT * FROM batiment WHERE id_batiment = '$id_batiment'";
     $result_check_batiment = mysqli_query($conn, $sql_check_batiment);
-    if (mysqli_num_rows($result_check_batiment) > 0) {
+    if (mysqli_num_rows($result_check_batiment) > 0) 
+    {
         // Le bâtiment existe, on peut ajouter le capteur
         $sql = "INSERT INTO capteur (id_capteur, nom, type, id_batiment) VALUES ('$id_capteur', '$nom', '$type', '$id_batiment')";
-        if (mysqli_query($conn, $sql)) {
+        if (mysqli_query($conn, $sql)) 
+        {
             echo "Le capteur a été ajouté avec succès.";
-        } else {
+        } 
+        
+        else 
+        {
             echo "Erreur lors de l'ajout du capteur : " . mysqli_error($conn);
         }
-    } else {
+    } 
+    
+    else 
+    {
         echo "Le bâtiment avec l'ID $id_batiment n'existe pas. Veuillez ajouter d'abord le bâtiment.";
     }
 }
 
 // Traitement du formulaire de suppression de capteur
-if (isset($_POST['supprimer_capteur'])) {
+if (isset($_POST['supprimer_capteur'])) 
+{
     $id_capteur = $_POST['id_capteur'];
 
     // Supprimer d'abord les mesures associées au capteur
     $sql_delete_mesures = "DELETE FROM mesure WHERE id_capteur = '$id_capteur'";
-    if (mysqli_query($conn, $sql_delete_mesures)) {
+    if (mysqli_query($conn, $sql_delete_mesures)) 
+    {
         // Supprimer le capteur
         $sql_delete_capteur = "DELETE FROM capteur WHERE id_capteur = '$id_capteur'";
-        if (mysqli_query($conn, $sql_delete_capteur)) {
+        if (mysqli_query($conn, $sql_delete_capteur)) 
+        {
             echo "Le capteur a été supprimé avec succès.";
-        } else {
+        } 
+        
+        else 
+        {
             echo "Erreur lors de la suppression du capteur : " . mysqli_error($conn);
         }
-    } else {
+    } 
+    
+    else 
+    {
         echo "Erreur lors de la suppression des mesures : " . mysqli_error($conn);
     }
 }
@@ -158,23 +181,32 @@ mysqli_close($conn);
                 $result = $conn->query($sql);
 
                 // Génération du tableau HTML avec les données récupérées
-                if ($result->num_rows > 0) {
+                if ($result->num_rows > 0) 
+                {
                     // En-tête du tableau
                     echo "<tr>";
-                    while ($fieldinfo = $result->fetch_field()) {
+                    while ($fieldinfo = $result->fetch_field()) 
+                    {
                         echo "<th>" . $fieldinfo->name . "</th>";
                     }
+                    
                     echo "</tr>";
 
                     // Données du tableau
-                    while ($row = $result->fetch_assoc()) {
+                    while ($row = $result->fetch_assoc()) 
+                    {
                         echo "<tr>";
-                        foreach ($row as $key => $value) {
+                        foreach ($row as $key => $value) 
+                        {
                             echo "<td>" . $value . "</td>";
                         }
+                        
                         echo "</tr>";
                     }
-                } else {
+                } 
+                
+                else 
+                {
                     echo "<tr><td colspan='6'>Aucune donnée disponible.</td></tr>";
                 }
 
