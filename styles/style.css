@@ -56,6 +56,13 @@ section.sujet{
   margin-bottom: 200px;
 }
 
+select {
+    color: black; /* Couleur du texte pour l'option sélectionnée */
+}
+
+select {
+    color: black; /* Couleur du texte pour les options non sélectionnées */
+}
 
 input{
   color: black;

@@ -129,9 +129,10 @@ mysqli_close($conn);
     </header>
     <h1>Ajouter/Supprimer des capteurs</h1>
 
-    <h2>Ajouter un capteur</h2>
     
     <section class="bulle">
+        <h2>Ajouter un capteur</h2>
+        
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="id_capteur">ID Capteur:</label>
         <input type="text" id="id_capteur" name="id_capteur" required><br>
