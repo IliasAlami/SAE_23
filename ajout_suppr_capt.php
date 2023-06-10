@@ -121,7 +121,7 @@ mysqli_close($conn);
             <nav class="nav-links">
                 <ul>
                     <li><a href="index.php" class="first">Accueil</a></li>
-                    <li><a href="connexion.php">Connexion</a></li>
+                    <li><a href="ajout_suppr_bat.php">Ajout/suppression de batiments</a></li>
                     <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
                 </ul>
             </nav>
