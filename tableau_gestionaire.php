@@ -58,12 +58,12 @@
 
         <?php
 
-        $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
-                FROM capteur
-                JOIN mesure ON capteur.id_capteur = mesure.id_capteur
-                JOIN batiment ON capteur.id_batiment = batiment.id_batiment
-                ORDER BY mesure.date DESC, mesure.horaire DESC
-                WHERE batiment.login = '" . $login . "'";
+		$sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+       			FROM capteur
+       			JOIN mesure ON capteur.id_capteur = mesure.id_capteur
+        		JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+     			WHERE batiment.login = '" . $login . "'
+        		ORDER BY mesure.date DESC, mesure.horaire DESC";
 
             $result = $conn->query($sql);
 
