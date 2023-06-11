@@ -70,10 +70,10 @@
 	<h2>Vous trouverez sur ce site:</h2>
   <section class="bulle">
     <ul>
-      <li>La page Accueil est accessible par tout le monde et affiche la dernière mesure des capteurs de chaques bâtiments</li>
-      <li>La page Administration accessible uniquement par la/les personne(s) autorisée(s), possédant un user et un mot de passe pour y accéder. La page sert à ajouter et supprimer des capteurs et/ou des bâtiments.</li>
-      <li>La page Gestion est accessible uniquement par les gestionnaires qui possèdent un user et un mot de passe. Cette page affiche les 9 dernières valeurs mesurées par les capteurs de leur propre bâtiment uniquement.</li>
-      <li>Et enfin, la page gestion de projet qui affiche [A REMPLIR]</li>
+      <li>La page Accueil est accessible par tout le monde et affiche la dernière mesure des capteurs de chaques bâtiments</li> <br>
+      <li>La page Administration accessible uniquement par la/les personne(s) autorisée(s), possédant un user et un mot de passe pour y accéder. La page sert à ajouter et supprimer des capteurs et/ou des bâtiments.</li><br>
+      <li>La page Gestion est accessible uniquement par les gestionnaires qui possèdent un user et un mot de passe. Cette page affiche les 9 dernières valeurs mesurées par les capteurs de leur propre bâtiment uniquement.</li><br>
+      <li>Et enfin, la page gestion de projet qui affiche [A REMPLIR]</li><br>
     </ul>
     </section>  <br> <br>
 
