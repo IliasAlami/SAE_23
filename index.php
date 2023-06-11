@@ -62,7 +62,17 @@
 
   <h1>ACCUEIL</h1>
   
-	<h2>Voici une petite mise en contexte</h2>
+	<h2>Quel est l'objectif de ce site ?</h2>
+  <section class="bulle">
+    <p>Nous avons créé ce site afin de faciliter la consultation des mesures des différents capteurs par des élèves de l'IUT ou bien par les professeurs. Ce site est principalement géré par l'administrateur ainsi que par les gestionnaires de chaque bâtiment.</p>
+  </section> <br> <br>
+
+	<h2>Vous trouverez sur ce site:</h2>
+  <section class="bulle">
+    <p>La page Administration accessible uniquement par la personne autorisée, possédant le mot de passe pour y accéder. La page sert à ajouter et supprimer des capteurs et/ou des bâtiments.</p>
+  </section>  <br> <br>
+
+
 	<section class="bulle">
    <?php
 

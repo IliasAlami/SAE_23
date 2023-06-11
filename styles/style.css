@@ -26,7 +26,6 @@ body {
 }
 
 
-
 h1, h2{
   text-align: center;
 }
@@ -43,14 +42,15 @@ h2 {
   margin-top: 50px;
   text-align: center;
   border: solid;
-  margin-left: 400px;
-  margin-right: 400px;
+  margin-left: 200px;
+  margin-right: 200px;
   background: linear-gradient(90deg, #171717, #313131, #171717);
   border-color: rgb(22, 22, 22);
   border-radius: 10px;
   font-size: 130%;
   padding-bottom: 30px;
 }
+
 
 section.sujet{
   margin-bottom: 200px;

@@ -127,9 +127,10 @@ mysqli_close($conn);
     
     <h1>Ajouter/Supprimer des bâtiments</h1>
 
-    <h2>Ajouter un bâtiment</h2>
+
     
     <section class="bulle">
+    <h2>Ajouter un bâtiment</h2>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="id_batiment">ID Bâtiment:</label>
         <input type="text" id="id_batiment" name="id_batiment" required><br>
