@@ -77,12 +77,6 @@
     </ul>
     </section>  <br> <br>
 
-  <h2>Vous trouverez sur ce site:</h2>
-  <section class="bulle">
-    <p>La page Administration accessible uniquement par la personne autorisée, possédant le mot de passe pour y accéder. La page sert à ajouter et supprimer des capteurs et/ou des bâtiments.</p>
-  </section>  <br> <br>
-
-
 	<section class="bulle">
       <?php
 
