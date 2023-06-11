@@ -74,45 +74,47 @@
 
 
 	<section class="bulle">
-   <?php
+      <?php
 
-include 'config.php';
+        include 'config.php';
 
 
-$sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
-        FROM capteur
-        JOIN (
+            $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+            FROM capteur
+            JOIN (
             SELECT id_capteur, MAX(id_mesure) AS last_mesure_id
             FROM mesure
-            GROUP BY id_capteur
-        ) AS last_mesure ON capteur.id_capteur = last_mesure.id_capteur
-        JOIN mesure ON last_mesure.last_mesure_id = mesure.id_mesure
-        JOIN batiment ON capteur.id_batiment = batiment.id_batiment
-        ORDER BY mesure.date DESC, mesure.horaire DESC";
-$result = $conn->query($sql);
+            GROUP BY id_capteur) 
+            AS last_mesure ON capteur.id_capteur = last_mesure.id_capteur
+            JOIN mesure ON last_mesure.last_mesure_id = mesure.id_mesure
+            JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+            ORDER BY mesure.date DESC, mesure.horaire DESC";
+            $result = $conn->query($sql);
 
-// Génération du tableau HTML avec les données récupérées
-if ($result->num_rows > 0) {
-    // En-tête du tableau
-    echo "<table>";
-    echo "<tr>";
-    while ($fieldinfo = $result->fetch_field()) {
-        echo "<th>" . $fieldinfo->name . "</th>";
-    }
-    echo "</tr>";
+            // Génération du tableau HTML avec les données récupérées
+            if ($result->num_rows > 0) 
+            {
+                    // En-tête du tableau
+                    echo "<table>";
+                    echo "<tr>";
+                    while ($fieldinfo = $result->fetch_field()) {
+                    echo "<th>" . $fieldinfo->name . "</th>";
+                }
+                    echo "</tr>";
 
-    // Données du tableau
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        foreach ($row as $key => $value) {
-            echo "<td>" . $value . "</td>";
-        }
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "<p>Aucune donnée disponible.</p>";
-}
+                    // Données du tableau
+                    while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    foreach ($row as $key => $value) 
+                    {
+                        echo "<td>" . $value . "</td>";
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>Aucune donnée disponible.</p>";
+            }
 
 // Fermeture de la connexion à la base de données
 $conn->close();
