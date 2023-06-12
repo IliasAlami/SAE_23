@@ -120,8 +120,8 @@ mysqli_close($conn);
             </div>
             <nav class="nav-links">
                 <ul>
-                    <li><a href="index.php" class="first">Accueil</a></li>
-                    <li><a href="ajout_suppr_bat.php">Ajout/suppression de batiments</a></li>
+                <li><a href="index.html" class="first">Accueil</a></li>
+                    <li><a href="ajout_suppr_bat.php">Ajout/Suppression de capteurs</a></li>
                     <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
                 </ul>
             </nav>
@@ -137,13 +137,13 @@ mysqli_close($conn);
         <label for="id_capteur">ID Capteur:</label>
         <input type="text" id="id_capteur" name="id_capteur" required><br>
 
-        <label for="nom">Nom:</label>
+        <label for="nom capteur">Nom:</label>
         <input type="text" id="nom" name="nom" required><br>
 
         <label for="type">Type:</label>
         <input type="text" id="type" name="type" required><br>
 
-        <label for="id_batiment">ID Bâtiment:</label>
+        <label for="nom batiment">ID Bâtiment:</label>
         <input type="text" id="id_batiment" name="id_batiment" required><br>
 
         <input type="submit" name="ajouter_capteur" value="Ajouter Capteur">

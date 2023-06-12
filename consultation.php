@@ -52,7 +52,8 @@
       </div>
       <nav class="nav-links">
           <ul>
-            <li><a href="index.php" class="first">Accueil</a></li>
+          <li><a href="index.html" class="first">Accueil</a></li>
+            <li><a href="consultation.php" class="first">Consultation</a></li>
             <li><a href="connexion.php">Connexion</a></li>
             <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
           </ul>
@@ -60,24 +61,12 @@
     </div>
   </header>
 
-  <h1>ACCUEIL</h1>
+  <h1>CONSULTATION</h1> <br>
   
-	<h2>Quel est l'objectif de ce site ?</h2>
-  <section class="bulle">
-    <p>Nous avons créé ce site afin de faciliter la consultation des mesures des différents capteurs par des élèves de l'IUT ou bien par les professeurs. Ce site est principalement géré par l'administrateur ainsi que par les gestionnaires de chaque bâtiment.</p>
-  </section> <br> <br>
 
-	<h2>Vous trouverez sur ce site:</h2>
-  <section class="bulle">
-    <ul>
-      <li>La page Accueil est accessible par tout le monde et affiche la dernière mesure des capteurs de chaques bâtiments</li> <br>
-      <li>La page Administration accessible uniquement par la/les personne(s) autorisée(s), possédant un user et un mot de passe pour y accéder. La page sert à ajouter et supprimer des capteurs et/ou des bâtiments.</li><br>
-      <li>La page Gestion est accessible uniquement par les gestionnaires qui possèdent un user et un mot de passe. Cette page affiche les 9 dernières valeurs mesurées par les capteurs de leur propre bâtiment uniquement.</li><br>
-      <li>Et enfin, la page gestion de projet qui affiche [A REMPLIR]</li><br>
-    </ul>
-    </section>  <br> <br>
 
 	<section class="bulle">
+  <h2>Affichage des dernières mesures:</h2>
       <?php
 
         include 'config.php';
