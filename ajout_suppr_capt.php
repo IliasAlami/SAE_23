@@ -123,7 +123,7 @@ mysqli_close($conn);
                 <li><a href="index.html" class="first">Accueil</a></li>
                     <li><a href="ajout_suppr_bat.php">Ajout/Suppression de Batiments</a></li>
                     <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
-                    <li><a href="decennexion">Déconnexion</a></li>
+                    <li><a href="deconnexion.php">Déconnexion</a></li>
                 </ul>
             </nav>
         </div>

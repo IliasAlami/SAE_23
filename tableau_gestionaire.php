@@ -46,7 +46,7 @@
                     <li><a href="index.html" class="first">Accueil</a></li>
                     <li><a href="consultation.php" class="first">Consultation</a></li>
                     <li><a href="gestion_de_projet.html">Gestion de projet</a></li>
-                    <li><a href="decennexion">Déconnexion</a></li>
+                    <li><a href="deconnexion.php">Déconnexion</a></li>
                 </ul>
             </nav>
         </div>
