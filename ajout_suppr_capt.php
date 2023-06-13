@@ -211,6 +211,75 @@ mysqli_close($conn);
                 {
                     echo "<tr><td colspan='6'>Aucune donnée disponible.</td></tr>";
                 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+				///////////////////////////////Métrique//////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+				// Liste des types de mesure
+				$typesMesure = array("temperature", "co2"); // Ajoutez d'autres types de mesure si nécessaire
+				
+				// Requête SQL pour récupérer les valeurs des mesures pour tous les bâtiments
+				$sql = "SELECT valeur, batiment FROM sae23 WHERE type IN ('" . implode("','", $typesMesure) . "')";
+				
+				// Exécution de la requête
+				$result = $conn->query($sql);
+				
+				if ($result) {
+    				// Tableau associatif pour stocker les valeurs des mesures par bâtiment et type de mesure
+    				$valeurs = array();
+				
+    				// Parcourir les résultats de la requête
+    				while ($row = $result->fetch_assoc()) {
+        				$valeur = $row['valeur'];
+        				$batiment = $row['batiment'];
+				
+        				// Vérifier si le bâtiment existe déjà dans le tableau
+        				if (!isset($valeurs[$batiment])) {
+            				$valeurs[$batiment] = array();
+        				}
+				
+        				// Vérifier si le type de mesure existe déjà pour ce bâtiment
+        				if (!isset($valeurs[$batiment][$typeMesure])) {
+            				$valeurs[$batiment][$typeMesure] = array();
+        				}
+				
+        				// Ajouter la valeur à la liste correspondante
+        				$valeurs[$batiment][$typeMesure][] = $valeur;
+    				}
+				
+    				// Parcourir les bâtiments et les types de mesure
+    				foreach ($valeurs as $batiment => $mesuresBatiment) {
+        				foreach ($mesuresBatiment as $typeMesure => $valeursMesure) {
+            				// Compter le nombre de valeurs
+            				$denominateur = count($valeursMesure);
+				
+            				// Calculer la somme des valeurs
+            				$somme = array_sum($valeursMesure);
+				
+            				// Chercher la valeur minimale
+            				$minimum = min($valeursMesure);
+				
+            				// Chercher la valeur maximale
+            				$maximum = max($valeursMesure);
+				
+            				// Calculer la moyenne
+            				$moyenne = $somme / $denominateur;
+				
+            				// Afficher les résultats
+            				echo "Bâtiment: $batiment\n";
+            				echo "Type de mesure: $typeMesure\n";
+            				echo "Somme des valeurs: $somme\n";
+            				echo "Nombre de valeurs: $denominateur\n";
+            				echo "Moyenne: $moyenne\n";
+            				echo "Minimum: $minimum\n";
+            				echo "Maximum: $maximum\n";
+            				echo "\n";
+        				}
+    				}
+				} else {
+    				echo "Erreur lors de l'exécution de la requête : " . $conn->error;
+				}
+				
 
                 // Fermeture de la connexion à la base de données
                 $conn->close();

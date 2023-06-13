@@ -90,10 +90,70 @@
             } else {
                 echo "<p>Aucune donnée disponible.</p>";
             }
+			
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+				///////////////////////////////Métrique//////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+			
+			// Liste des types de mesure
+			$typesMesure = array("temperature", "co2"); // Ajoutez d'autres types de mesure si nécessaire
+			
+			// Parcourir les types de mesure
+			foreach ($typesMesure as $typeMesure) {
+    			// Requête SQL pour récupérer les valeurs du type de mesure pour le bâtiment spécifié
+    			$sql = "SELECT mesure.valeur
+            			FROM mesure
+            			JOIN capteur ON capteur.id_capteur = mesure.id_capteur
+            			JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+            			WHERE batiment.login = '" . $login . "'
+            			AND mesure.type = '$typeMesure'";
+			
+    			// Exécution de la requête
+    			$result = $conn->query($sql);
+			
+    			if ($result) {
+        			// Tableau pour stocker les valeurs des mesures
+        			$valeurs = array();
+			
+        			// Parcourir les résultats de la requête
+        			while ($row = $result->fetch_assoc()) {
+            			$valeurs[] = $row['valeur'];
+        			}
+			
+        			// Compter le nombre de valeurs
+        			$denominateur = count($valeurs);
+			
+        			// Calculer la somme des valeurs
+        			$somme = array_sum($valeurs);
+			
+        			// Chercher la valeur minimale
+        			$minimum = min($valeurs);
+			
+        			// Chercher la valeur maximale
+        			$maximum = max($valeurs);
+			
+        			// Calculer la moyenne
+        			$moyenne = $somme / $denominateur;
+			
+        			// Afficher les résultats
+        			echo "Type de mesure: $typeMesure\n";
+        			echo "Login du bâtiment: $loginBatiment\n";
+        			echo "Somme des valeurs: $somme\n";
+        			echo "Nombre de valeurs: $denominateur\n";
+        			echo "Moyenne: $moyenne\n";
+        			echo "Minimum: $minimum\n";
+        			echo "Maximum: $maximum\n";
+        			echo "\n";
+    			} else {
+        			echo "Erreur lors de l'exécution de la requête : " . $conn->error;
+    			}
+			}
 
-            // Fermeture de la connexion à la base de données
-            $conn->close();
-            ?>
+// Fermeture de la connexion à la base de données
+$conn->close();
+
+
+?>
 
 
     </table>
