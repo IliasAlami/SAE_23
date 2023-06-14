@@ -86,9 +86,10 @@
                     }
                     echo "</tr>";
                 }
-                echo "</table>";
-            } else {
-                echo "<p>Aucune donnée disponible.</p>";
+
+            } 
+            else {
+                echo "<tr><td colspan='6'>Aucune donnée disponible.</td></tr>";
             }
 			
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -124,7 +125,7 @@
 			$conn->close();
 
 
-?>
+    ?>
 
 
     </table>

@@ -222,26 +222,27 @@ mysqli_close($conn);
         				GROUP BY capteur.type";
 				
 				// Exécution de la requête
-				$result = $conn->query($sql);
-				
-				// Vérifier si des résultats sont renvoyés
-				if ($result->num_rows > 0) {
-    				// Parcourir les résultats et afficher les valeurs
-    				while ($row = $result->fetch_assoc()) {
-        				echo "Type de capteur: " . $row["type"] . "<br>";
-        				echo "Moyenne: " . $row["moyenne"] . "<br>";
-        				echo "Minimum: " . $row["minimum"] . "<br>";
-        				echo "Maximum: " . $row["maximum"] . "<br>";
-        				echo "<br>";
-    				}
-				} else {
-    				echo "Aucun résultat trouvé.";
-				}
-				
+			$result = $conn->query($sql);
+			
+			// Vérifier si des résultats sont renvoyés
+			if ($result->num_rows > 0) {
+    			// Parcourir les résultats et afficher les valeurs
+    			while ($row = $result->fetch_assoc()) {
+        			echo "Type de capteur: " . $row["type"] . "<br>";
+        			echo "Moyenne: " . $row["moyenne"] . "<br>";
+        			echo "Minimum: " . $row["minimum"] . "<br>";
+        			echo "Maximum: " . $row["maximum"] . "<br>";
+        			echo "<br>";
+    			}
+			} else {
+    			echo "Aucun résultat trouvé.";
+			}
+			
+			// Fermeture de la connexion à la base de données
+			$conn->close();
 
-                // Fermeture de la connexion à la base de données
-                $conn->close();
-        ?>
+
+    ?>
     </table>
     </section>
     </form>
