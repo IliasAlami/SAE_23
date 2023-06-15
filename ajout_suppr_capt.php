@@ -4,6 +4,8 @@
     // Start the session
     session_start();
 
+
+
     // Check if the 'login' session variable is set
     if (isset($_SESSION['login'])) {
         // Retrieve the 'login' session variable
@@ -13,12 +15,19 @@
         header('Location: connexion.php');
     }
 
+
+    
+
     // Connect to the database
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     if (!$conn) {
         // Display an error message if the database connection fails
         die("La connexion à la base de données a échoué : " . mysqli_connect_error());
     }
+
+
+
+
 
     // Check if the 'ajouter_capteur' form has been submitted
     if (isset($_POST['ajouter_capteur'])) {
@@ -27,6 +36,9 @@
         $nom = $_POST['nom'];
         $type = $_POST['type'];
         $id_batiment = $_POST['id_batiment'];
+
+
+
 
         // Check if the specified 'id_batiment' exists in the 'batiment' table
         $sql_check_batiment = "SELECT * FROM batiment WHERE id_batiment = '$id_batiment'";
@@ -46,6 +58,9 @@
             echo "Le bâtiment avec l'ID $id_batiment n'existe pas. Veuillez ajouter d'abord le bâtiment.";
         }
     }
+
+
+
 
     // Check if the 'supprimer_capteur' form has been submitted
     if (isset($_POST['supprimer_capteur'])) {
@@ -70,13 +85,26 @@
         }
     }
 
+
+
+
+    
+
     // Select all sensors from the 'capteur' table
     $sql_select_capteurs = "SELECT id_capteur, nom FROM capteur";
     $result_capteurs = mysqli_query($conn, $sql_select_capteurs);
 
+
+
+
+
     // Close the database connection
     mysqli_close($conn);
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -88,6 +116,9 @@
     
     <!-- Display the title -->
     <h1>Ajouter/Supprimer des capteurs</h1>
+
+
+
 
     <!-- Section for adding a sensor -->
     <section class="bulle">
@@ -112,6 +143,13 @@
             <input type="submit" name="ajouter_capteur" value="Ajouter Capteur">
         </form>
     </section>
+
+
+
+
+
+
+
 	
     <!-- Section for deleting a sensor -->
     <section class="bulle">
@@ -132,6 +170,14 @@
             <input type="submit" name="supprimer_capteur" value="Supprimer Capteur"><br><br><br>
         </form>
     </section>
+
+
+
+
+
+
+
+
 
     <section class="bulle">
         <!-- Display the sensor data in a table -->

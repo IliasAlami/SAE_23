@@ -3,6 +3,9 @@ include 'config.php';
 
 session_start(); // Start the session
 
+
+
+
 if (isset($_SESSION['login'])) {
     // User is logged in
     $login = $_SESSION['login'];
@@ -11,6 +14,9 @@ if (isset($_SESSION['login'])) {
     // Redirect to the login page
     header('Location: connexion.php');
 }
+
+
+
 
 
 // Handling the building addition form
@@ -27,6 +33,10 @@ if (isset($_POST['ajouter_batiment'])) {
         echo "Erreur lors de l'ajout du bâtiment : " . mysqli_error($conn);
     }
 }
+
+
+
+
 
 // Handling the building deletion form
 if (isset($_POST['supprimer_batiment'])) {
@@ -48,16 +58,31 @@ if (isset($_POST['supprimer_batiment'])) {
     }
 }
 
+
+
+
+
+
 // Retrieve the list of buildings for selection
 $sql_select_batiments = "SELECT id_batiment, nom FROM batiment";
 $result_batiments = mysqli_query($conn, $sql_select_batiments);
+
+
+
 
 // Close the database connection
 mysqli_close($conn);
 ?>
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -71,6 +96,9 @@ mysqli_close($conn);
     <link rel="stylesheet" href="./styles/rwd.css" />
     <link rel="stylesheet" href="./styles/Hamburger.css" />
 </head>
+
+
+
 
 <body>
     <header>
@@ -94,7 +122,18 @@ mysqli_close($conn);
         </div>
     </header>
 
+
+
+
+
+
     <h1>Ajouter/Supprimer des bâtiments</h1>
+
+
+
+
+
+
 
     <section class="bulle">
         <h2>Ajouter un bâtiment</h2>
@@ -115,6 +154,10 @@ mysqli_close($conn);
         </form>
     </section>
 
+
+
+
+
     <section class="bulle">
         <h2>Supprimer un bâtiment</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -131,6 +174,9 @@ mysqli_close($conn);
         </form>
     </section>
 </body>
+
+
+
 
 <footer>
     <aside id="last">
