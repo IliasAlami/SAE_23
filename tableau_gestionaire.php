@@ -59,75 +59,74 @@
 
         <?php
 
-		$sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
-       			FROM capteur
-       			JOIN mesure ON capteur.id_capteur = mesure.id_capteur
-        		JOIN batiment ON capteur.id_batiment = batiment.id_batiment
-     			WHERE batiment.login = '" . $login . "'
-        		ORDER BY mesure.date DESC, mesure.horaire DESC";
+    // SQL query to retrieve measurements for a specific user (filtered by login)
+    $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+            FROM capteur
+            JOIN mesure ON capteur.id_capteur = mesure.id_capteur
+            JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+            WHERE batiment.login = '" . $login . "'
+            ORDER BY mesure.date DESC, mesure.horaire DESC";
 
-            $result = $conn->query($sql);
+    $result = $conn->query($sql);
 
-            // Génération du tableau HTML avec les données récupérées
-            if ($result->num_rows > 0) {
-                // En-tête du tableau
-                echo "<table>";
-                echo "<tr>";
-                while ($fieldinfo = $result->fetch_field()) {
-                    echo "<th>" . $fieldinfo->name . "</th>";
-                }
-                echo "</tr>";
+    // Generate the HTML table with the retrieved data
+    if ($result->num_rows > 0) {
+        // Table header
+        echo "<table>";
+        echo "<tr>";
+        while ($fieldinfo = $result->fetch_field()) {
+            echo "<th>" . $fieldinfo->name . "</th>"; 
+            // Display the column names as table headers
+        }
+        echo "</tr>";
 
-                // Données du tableau
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    foreach ($row as $key => $value) {
-                        echo "<td>" . $value . "</td>";
-                    }
-                    echo "</tr>";
-                }
-
-            } 
-            else {
-                echo "<tr><td colspan='6'>Aucune donnée disponible.</td></tr>";
+        // Table data
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            foreach ($row as $key => $value) {
+                echo "<td>" . $value . "</td>"; 
+                // Display each value in a table cell
             }
-			
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-				///////////////////////////////Métrique//////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-			
-			// Requête SQL
-			$sql = "SELECT capteur.type, AVG(mesure.valeur) AS moyenne, MIN(mesure.valeur) AS minimum, MAX(mesure.valeur) AS maximum
-        			FROM capteur
-        			JOIN mesure ON capteur.id_capteur = mesure.id_capteur
-        			JOIN batiment ON capteur.id_batiment = batiment.id_batiment
-     				WHERE batiment.login = '" . $login . "'
-        			GROUP BY capteur.type";
-			
-			// Exécution de la requête
-			$result = $conn->query($sql);
-			
-			// Vérifier si des résultats sont renvoyés
-			if ($result->num_rows > 0) {
-    			// Parcourir les résultats et afficher les valeurs
-    			while ($row = $result->fetch_assoc()) {
-        			echo "Type de capteur: " . $row["type"] . "<br>";
-        			echo "Moyenne: " . $row["moyenne"] . "<br>";
-        			echo "Minimum: " . $row["minimum"] . "<br>";
-        			echo "Maximum: " . $row["maximum"] . "<br>";
-        			echo "<br>";
-    			}
-			} else {
-    			echo "Aucun résultat trouvé.";
-			}
-			
-			// Fermeture de la connexion à la base de données
-			$conn->close();
+            echo "</tr>";
+        }
+    }
+    else {
+        echo "<tr><td colspan='6'>No data available.</td></tr>"; 
+        // Display a message if no data is found
+    }
 
 
-    ?>
+////////////////////////////////Metrics//////////////////////////////////////////////
 
 
+    // SQL query to calculate metrics for a specific user (filtered by login)
+    $sql = "SELECT capteur.type, AVG(mesure.valeur) AS moyenne, MIN(mesure.valeur) AS minimum, MAX(mesure.valeur) AS maximum
+            FROM capteur
+            JOIN mesure ON capteur.id_capteur = mesure.id_capteur
+            JOIN batiment ON capteur.id_batiment = batiment.id_batiment
+            WHERE batiment.login = '" . $login . "'
+            GROUP BY capteur.type";
+
+    // Execute the SQL query
+    $result = $conn->query($sql);
+
+    // Check if any results are returned
+    if ($result->num_rows > 0) {
+        // Loop through the results and display the values
+        while ($row = $result->fetch_assoc()) {
+            echo "Sensor Type: " . $row["type"] . "<br>";
+            echo "Average: " . $row["moyenne"] . "<br>";
+            echo "Minimum: " . $row["minimum"] . "<br>";
+            echo "Maximum: " . $row["maximum"] . "<br>";
+            echo "<br>";
+        }
+    } else {
+        echo "No results found.";
+    }
+
+    // Close the database connection
+    $conn->close();
+?>
     </table>
     </section>
     <footer>

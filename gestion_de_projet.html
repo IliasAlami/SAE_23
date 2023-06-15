@@ -59,7 +59,29 @@
     </p> <br><br><br>
     <p class="justify">
       <h3>Anthony SUISSE</h3> <br> <br>
-      Durant cette SAE23, j'ai réalisé le site internet. Mon travail a été de faire les diférentes pges du site ainsi que le php en lien avec les bases de données qui permet la connexion des utilisateurs et des administrateurs. Durant toutes cette SAE, j'ai donc dû utilisé les langages suivant : HTML, CSS et PHP. 
+      Durant cette SAE23, j'ai réalisé le GANTT, la création de la table SQL via phpMyAdmin, la création d'un script bash récupérant les données MQTT via JS pour les envoyer sur notre base de données, l'affichage des différentes valeurs récupérées dans la base de données grâce à un script PHP et enfin le code PHP calculant les moyens, le minimum et le maximum en fonction du type de donnée (CO2, température, etc.)
+      
+	<h4>GANTT</h4><br>   
+J'ai réalisé le Gantt prévisionnel et final. Pour ce Gantt, il était nécessaire de planifier le temps de réalisation de chaque tâche, mais aussi de savoir qui va réaliser la tâche.<br>
+Aucun problème rencontré.<br><br>
+<img src="images/phpmyadmin.png" alt="PHPMyAdmin" width="1080"> <br><br>
+
+	<h4>Création de la table SQL via phpMyAdmin</h4><br>
+Pour la réalisation des différentes tables comme batiment, capteur, mesure et administration, je me suis beaucoup aidé du diaporama de présentation de la SAE 23 à la slide 11 nommée *Contraintes conceptuelles de la BD*. Pour le type de valeur (varchar, int, etc.), nous nous sommes concertés pour savoir ce qui irait le mieux. Mais nous avons quand même dû réaliser certaines modifications tout au long du projet, par exemple les colonnes avec leur type de caractère et leur nombre maximum.<br>
+Aucun problème rencontré.<br><br>
+
+	<h4>Création d'un script bash récupérant les données MQTT via JS pour les envoyer sur notre base de données</h4><br>
+En ce qui concerne le script bash, je me suis inspiré du script de récupération de la SAE 15. J'ai dû améliorer certains points, comme à propos du stockage des données. Je les ai mis dans la base de données, comme demandé dans le cahier des charges, à la place d'un fichier temporel comme dans la SAE 15.<br>
+J'ai rencontré un problème majeur qui est de faire en sorte que même si on rajoute des capteurs, le script fonctionne toujours en recevant les données de ce capteur avec le bon type de donnée. Pour résoudre ce problème, j'ai dû réaliser quelques recherches sur différents forums ou sites web. Au final, j'ai réussi à résoudre mon problème en faisant en sorte que le script fasse la requête MQTT sur tous les capteurs que comporte la table "capteur" dans la base de données SQL.<br><br>
+
+	<h4>Affichage des différentes valeurs récupérées dans la base de données grâce à un script PHP</h4><br>
+Pour le PHP qui permet d'afficher les mesures dans des tableaux, j'ai fait en sorte d'avoir 3 affichages différents. Une version du tableau pour les visiteurs qui voient juste la dernière valeur de chaque capteur, une autre pour les gestionnaires de bâtiment qui voient seulement les capteurs de leur bâtiment mais toutes les valeurs. Enfin, il y a la table d'administrateur qui voit toutes les mesures de tous les capteurs dans chaque bâtiment. J'ai donc d'abord réalisé une requête SQL via le PHP pour récupérer les valeurs nécessaires. Ensuite, je crée une boucle qui ajoute des colonnes à un tableau tant qu'il y a des mesures.<br>
+Au niveau des problèmes, j'en ai rencontré un seul sur cette partie, qui est le fait de savoir quel gestionnaire est connecté pour récupérer les valeurs qui appartiennent à son bâtiment. Avec l'aide de mon coéquipier qui a effectué le système de connexion sur le site web, nous avons enregistré le login de la personne qui se connecte dans une fonction. Enfin, dans la requête SQL, je devais préciser le fait de vouloir récupérer les données appartenant au bâtiment auquel est lié le login.<br><br>
+
+	<h4>Code PHP calculant les moyens, le minimum et le maximum en fonction du type de donnée (CO2, température, etc.)</h4><br>
+Lors de la réflexion pour le calcul des métriques, j'avais plusieurs possibilités, mais la plus simple était de relever les différentes métriques telles que le minimum, le maximum et la moyenne au moment de la requête SQL. Ensuite, avec une boucle "while" pour afficher les valeurs calculées et récupérées pour les différents types.<br>
+Aucun problème rencontré.<br><br>
+ 
     </p> <br><br><br>
     <p class="justify">
       <h3>Ilias ALAMI</h3> <br> <br>
