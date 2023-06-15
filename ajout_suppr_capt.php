@@ -36,6 +36,8 @@
         $nom = $_POST['nom'];
         $type = $_POST['type'];
         $id_batiment = $_POST['id_batiment'];
+        $salle = $_POST['salle'];
+
 
 
 
@@ -45,7 +47,7 @@
         $result_check_batiment = mysqli_query($conn, $sql_check_batiment);
         if (mysqli_num_rows($result_check_batiment) > 0) {
             // Insert the new sensor data into the 'capteur' table
-            $sql = "INSERT INTO capteur (id_capteur, nom, type, id_batiment) VALUES ('$id_capteur', '$nom', '$type', '$id_batiment')";
+            $sql = "INSERT INTO capteur (id_capteur, nom, type, salle, id_batiment) VALUES ('$id_capteur', '$nom', '$type', '$salle', '$id_batiment')";
             if (mysqli_query($conn, $sql)) {
                 // Display success message if the sensor is successfully added
                 echo "Le capteur a été ajouté avec succès.";
@@ -91,7 +93,7 @@
     
 
     // Select all sensors from the 'capteur' table
-    $sql_select_capteurs = "SELECT id_capteur, nom FROM capteur";
+    $sql_select_capteurs = "SELECT id_capteur, nom, salle FROM capteur";
     $result_capteurs = mysqli_query($conn, $sql_select_capteurs);
 
 ?>
@@ -161,6 +163,10 @@
             <label for="nom batiment">ID Bâtiment:</label>
             <input type="text" id="id_batiment" name="id_batiment" required><br>
 
+            <label for="salle">Salle:</label>
+            <input type="text" id="salle" name="salle" required><br>
+
+
             <!-- Submit button for adding the sensor -->
             <input type="submit" name="ajouter_capteur" value="Ajouter Capteur">
         </form>
@@ -183,7 +189,7 @@
                 <!-- Display options for each sensor retrieved from the database -->
                 <?php
                 while ($row = mysqli_fetch_assoc($result_capteurs)) {
-                    echo "<option value='" . $row['id_capteur'] . "'>" . $row['nom'] . "</option>";
+                    echo "<option value='" . $row['id_capteur'] . "'>" . $row['nom'] . " - " . $row['salle'] . "</option>";
                 }
                 ?>
             </select><br>
