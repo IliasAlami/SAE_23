@@ -67,11 +67,11 @@
 
 	<section class="bulle">
   <h2>Affichage des dernières mesures:</h2>
-      <<?php
+      <?php
     include 'config.php';
 
     // SQL query to retrieve the latest measurements for each sensor
-    $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+    $sql = "SELECT batiment.nom AS nom_batiment, capteur.salle AS nom_salle, capteur.type, mesure.date, mesure.horaire, mesure.valeur
     FROM capteur
     JOIN (
         SELECT id_capteur, MAX(id_mesure) AS last_mesure_id
