@@ -1,13 +1,13 @@
 <?php
-$servername = "localhost"; // Nom du serveur MySQL
-$username = "root"; // Nom d'utilisateur MySQL
-$password = "passroot"; // Mot de passe MySQL
-$dbname = "sae23"; // Nom de la base de données
+$servername = "localhost"; // MySQL server name
+$username = "root"; // MySQL username
+$password = "passroot"; // MySQL password
+$dbname = "sae23"; // Database name
 
-// Connexion à la base de données
+// Connect to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Vérifier la connexion
+// Check the connection
 if ($conn->connect_error) {
     die("Échec de la connexion : " . $conn->connect_error);
 }

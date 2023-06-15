@@ -7,7 +7,7 @@
         $user = $_POST['login'];
         $pass = $_POST['password'];
 
-        // Requête SQL pour vérifier les informations de connexion
+        // SQL query to check login information
         $query = "SELECT login FROM `administration` WHERE login='$user' AND mdp='$pass'";
         $result = mysqli_query($conn, $query);
         $result = mysqli_fetch_array($result);
@@ -19,7 +19,7 @@
         }
 
         else {
-            // Requête SQL pour vérifier les informations de connexion
+            // SQL query to check login information
             $query = "SELECT login FROM `batiment` WHERE login='$user' AND mdp='$pass'";
             $result = mysqli_query($conn, $query);
             $result = mysqli_fetch_array($result);

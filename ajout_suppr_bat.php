@@ -1,23 +1,19 @@
 <?php
 include 'config.php';
 
-session_start(); // Démarrer la session
+session_start(); // Start the session
 
 if (isset($_SESSION['login'])) {
-    // L'utilisateur est connecté
+    // User is logged in
     $login = $_SESSION['login'];
 } else {
-    // L'utilisateur n'est pas connecté
-    // Rediriger vers la page de connexion ou afficher un message d'erreur
+    // User is not logged in
+    // Redirect to the login page
     header('Location: connexion.php');
 }
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
-    die("La connexion à la base de données a échoué : " . mysqli_connect_error());
-}
 
-// Traitement du formulaire d'ajout de bâtiment
+// Handling the building addition form
 if (isset($_POST['ajouter_batiment'])) {
     $id_batiment = $_POST['id_batiment'];
     $nom_batiment = $_POST['nom_batiment'];
@@ -32,17 +28,17 @@ if (isset($_POST['ajouter_batiment'])) {
     }
 }
 
-// Traitement du formulaire de suppression de bâtiment
+// Handling the building deletion form
 if (isset($_POST['supprimer_batiment'])) {
     $id_batiment = $_POST['id_batiment'];
 
-    // Vérifier si le bâtiment contient des capteurs avant de le supprimer
+    // Check if the building contains sensors before deleting it
     $sql_check_capteurs = "SELECT * FROM capteur WHERE id_batiment = '$id_batiment'";
     $result_check_capteurs = mysqli_query($conn, $sql_check_capteurs);
     if (mysqli_num_rows($result_check_capteurs) > 0) {
         echo "Le bâtiment avec l'ID $id_batiment contient des capteurs. Veuillez supprimer d'abord les capteurs.";
     } else {
-        // Supprimer le bâtiment
+        // Delete the building
         $sql_delete_batiment = "DELETE FROM batiment WHERE id_batiment = '$id_batiment'";
         if (mysqli_query($conn, $sql_delete_batiment)) {
             echo "Le bâtiment a été supprimé avec succès.";
@@ -52,11 +48,11 @@ if (isset($_POST['supprimer_batiment'])) {
     }
 }
 
-// Récupérer la liste des bâtiments pour la sélection
+// Retrieve the list of buildings for selection
 $sql_select_batiments = "SELECT id_batiment, nom FROM batiment";
 $result_batiments = mysqli_query($conn, $sql_select_batiments);
 
-// Fermer la connexion à la base de données
+// Close the database connection
 mysqli_close($conn);
 ?>
 
