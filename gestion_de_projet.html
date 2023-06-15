@@ -84,15 +84,43 @@ Aucun problème rencontré.<br><br>
  
     </p> <br><br><br>
     <p class="justify">
-      <h3>Ilias ALAMI</h3> <br> <br>
+      <h2>Ilias ALAMI CHENTOUFI</h2> <br> <br>
       Durant cette SAE23, j'ai réalisé le script de suppression/ajout de capteurs/batiments, et j'ai travaillé sur la solution site dynamique utilisant des dockers. Pour cela, j'ai manipulé les dockers suivants: influxdb, grafana et nodered. 
-    </p> 
+    </p> <br>
     
-    <h4>NODE-RED</h4><br>   
-      blablabla<br><br>
-      <img src="images/images_docker/screen_flow_nodered.jpg" alt="Flow node-red" width="1080"> <br><br>
-    
-    
+    <h4>NODE-RED</h4>  
+    <p> 
+      Node-RED est un outil de programmation visuelle open source qui permet de créer rapidement des applications IoT (Internet des objets) et des workflows basés sur des nœuds interconnectés. Il fournit une interface graphique conviviale pour connecter et gérer des flux de données entre différents appareils et services.<br><br>
+      Dans notre cas, je m'en suis servi afin de récupérer les données envoyées par le broker de l'IUT et les manipuler afin d'en extraire ce que l'on veut tel que le type de capteurs et sa valeurs, la salle, etc... Vous pourrez voir ci-dessous les différents bâtiments que j'ai choisi (CS et RT) et les capteurs de co2, température, activité et pression.<br><br>
+      <img src="images/images_docker/screen_flow_nodered.jpg" alt="Flow node-red" width="920"> <br><br>
+      Nous pouvons également, grâce aux noeuds "dashboard", afficher les différentes données extraites sur des dashboard: <br> <br>
+      <img src="images/images_docker/nodered_CS_dashboard.jpg" alt="Dashboard CS" width="920"> <br><br>
+      <img src="images/images_docker/nodered_RT_dashboard.jpg" alt="Dashboard RT" width="920"> <br><br>
+    </p>
+
+    <h4>INFLUXDB</h4>  
+    <p> 
+      InfluxDB est une base de données open source conçue spécifiquement pour capturer, stocker et interroger efficacement de grandes quantités de données temporelles générées par des applications IoT, des systèmes de surveillance, des événements en temps réel et d'autres sources de données qui évoluent dans le temps. <br><br>
+      Dans notre cas, je m'en suis servi afin de stocker ce que nodered récupérait des données du broker de l'IUT dans une base de donnée : <br><br>
+      <img src="images/images_docker/screen_influxdb.jpg" alt="BD influxdb" width="480"> <br><br>
+    </p>
+
+
+
+    <h4>GRAFANA</h4>  
+    <p> 
+      Grafana est une plateforme open source de visualisation et de monitoring des données. Elle permet de créer des tableaux de bord interactifs et personnalisables pour afficher et analyser des métriques, des logs et d'autres types de données en temps réel.
+      Dans notre cas, je m'en suis servi pour récupérer ce que contenait la base de donnée Influxdb et l'afficher sous forme de plusieurs graphiques assez esthétiques: <br><br>
+      Réseaux et Télécoms: <br>
+      <img src="images/images_docker/grafana_RT_2.jpg" alt="graphiques nodered" width="920"> <br><br>
+      Carrières Sociales: <br>
+      <img src="images/images_docker/grafana_CS_2.jpg" alt="graphiques nodered" width="920"> <br><br>
+    </p>
+
+    <h4>PROBLÈMES RENCONTRÉE</h4>  
+    <p> 
+     Parmi tout les problèmes rencontrées, BLABLABLA <br><br>
+    </p>
     
     <br><br><br>
   </section>
