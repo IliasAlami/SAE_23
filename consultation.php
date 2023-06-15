@@ -71,7 +71,7 @@
     include 'config.php';
 
     // SQL query to retrieve the latest measurements for each sensor
-    $sql = "SELECT batiment.nom AS nom_batiment, capteur.salle AS nom_salle, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+    $sql = "SELECT batiment.nom AS batiment, capteur.salle AS salle, capteur.type, mesure.date, mesure.horaire, mesure.valeur
     FROM capteur
     JOIN (
         SELECT id_capteur, MAX(id_mesure) AS last_mesure_id

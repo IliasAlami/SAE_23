@@ -60,7 +60,7 @@
         <?php
 
     // SQL query to retrieve measurements for a specific user (filtered by login)
-    $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+    $sql = "SELECT batiment.nom AS batiment, capteur.salle AS salle, capteur.type, mesure.date, mesure.horaire, mesure.valeur
             FROM capteur
             JOIN mesure ON capteur.id_capteur = mesure.id_capteur
             JOIN batiment ON capteur.id_batiment = batiment.id_batiment

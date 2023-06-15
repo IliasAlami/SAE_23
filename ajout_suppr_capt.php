@@ -206,7 +206,7 @@
         <table id="data-table">
             <?php
             // Select sensor data from multiple tables and display it in a table format
-            $sql = "SELECT batiment.nom AS nom_batiment, capteur.nom AS nom_capteur, capteur.type, mesure.date, mesure.horaire, mesure.valeur
+            $sql = "SELECT batiment.nom AS batiment, capteur.salle AS salle, capteur.type, mesure.date, mesure.horaire, mesure.valeur
                     FROM capteur
                     JOIN mesure ON capteur.id_capteur = mesure.id_capteur
                     JOIN batiment ON capteur.id_batiment = batiment.id_batiment
