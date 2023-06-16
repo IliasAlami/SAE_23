@@ -37,7 +37,7 @@
   <section class="sujet">
     <h1> CONNEXION </h1>
     <section class="bulle">
-      <form action="login.php, tableau_gestionnaire.php, ajout_suppr_capt.php, ajout_suppr_bat.php" method="POST">
+      <form action="login.php" method="POST">
         <p class="justify">
           <strong>Utilisateurs</strong> <br> <br>
         </p>

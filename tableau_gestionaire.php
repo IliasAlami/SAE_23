@@ -4,9 +4,11 @@
 
     session_start(); // Start the session
 
-    $gest = "SELECT login FROM `administration` WHERE login='$user'";
+    $query = "SELECT login FROM `batiment` WHERE login='$user'";
+    $gest = mysqli_query($conn, $query);
+    $gest = mysqli_fetch_array($gest);
 
-    if (isset($_SESSION['login'] && $_POST['login'] = $gest)) {
+    if (isset($_SESSION['login']) && ($_POST['login'] == $gest)) {
         // User is logged in
         $login = $_SESSION['login'];
     } else {
