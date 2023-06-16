@@ -2,15 +2,16 @@
     include 'config.php';
 
 
-    session_start(); // Démarrer la session
+    session_start(); // Start the session
 
-    if (isset($_SESSION['login'])) {
-        // L'utilisateur est connecté
+    $gest = "SELECT login FROM `administration` WHERE login='$user'";
+
+    if (isset($_SESSION['login'] && $_POST['login'] = $gest)) {
+        // User is logged in
         $login = $_SESSION['login'];
-        // Effectuer les opérations spécifiques à l'utilisateur connecté
     } else {
-        // L'utilisateur n'est pas connecté
-        // Rediriger vers la page de connexion ou afficher un message d'erreur
+    // User is not logged in
+    // Redirect to the login page
         header('Location: connexion.php');
     }
 

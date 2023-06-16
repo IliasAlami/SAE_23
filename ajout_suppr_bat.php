@@ -3,10 +3,9 @@ include 'config.php';
 
 session_start(); // Start the session
 
+$admin = "SELECT login FROM `administration` WHERE login='$user'";
 
-
-
-if (isset($_SESSION['login'])) {
+if (isset($_SESSION['login'] && $_POST['login'] = $admin)) {
     // User is logged in
     $login = $_SESSION['login'];
 } else {

@@ -4,10 +4,10 @@
     // Start the session
     session_start();
 
-
+    $admin = "SELECT login FROM `administration` WHERE login='$user'";
 
     // Check if the 'login' session variable is set
-    if (isset($_SESSION['login'])) {
+    if (isset($_SESSION['login'] && $_POST['login'] = $admin)) {
         // Retrieve the 'login' session variable
         $login = $_SESSION['login'];
     } else {
