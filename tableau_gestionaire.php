@@ -4,19 +4,16 @@
 
     session_start(); // Start the session
 
-    $query = "SELECT login FROM `batiment` WHERE login='$user'";
-    $gest = mysqli_query($conn, $query);
-    $gest = mysqli_fetch_array($gest);
-
-    if (isset($_SESSION['login']) && ($_POST['login'] == $gest)) {
+    if (isset($_SESSION['login'])) {
         // User is logged in
         $login = $_SESSION['login'];
+
     } else {
+    
     // User is not logged in
     // Redirect to the login page
         header('Location: connexion.php');
     }
-
 ?>
 
 
